@@ -10,15 +10,15 @@ module('Integration | Component | dog/form', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Dog::Form />`);
+    await render(hbs`<Dog::Add />`);
 
     assert.dom().hasText('');
 
     // Template block usage:
     await render(hbs`
-      <Dog::Form>
+      <Dog::Add>
         template block text
-      </Dog::Form>
+      </Dog::Add>
     `);
 
     assert.dom().hasText('template block text');

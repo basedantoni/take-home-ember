@@ -15,7 +15,7 @@
   {{/if}}
 
   {{#if this.isAdding}}
-    <Dog::Form
+    <Dog::Add
       @onSave={{this.handleSave}}
       @onCancel={{this.toggleAdd}}
       @onError={{this.setErrorMessage}}

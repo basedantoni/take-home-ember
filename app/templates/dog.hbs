@@ -2,6 +2,23 @@
 
 <h2>Dog Profile</h2>
 
+<button class="btn btn-primary" {{on "click" this.toggleEdit}} type="button">
+  {{if this.isEditing "Cancel" "Edit"}}
+</button>
+
+{{#if this.isEditing}}
+  <Dog::Add @onCancel={{this.toggleEdit}} @onSave={{this.handleSave}} />
+{{else}}
+  <div>
+    {{@model.name}}
+    {{@model.name}}
+    {{@model.breed}}
+    {{@model.owner}}
+    {{@model.size}}
+    {{@model.description}}
+  </div>
+{{/if}}
+
 <button
   type="button"
   class="col btn btn-danger"
@@ -9,14 +26,3 @@
 >
   Delete
 </button>
-
-{{this.isEditing}}
-<button class="btn btn-primary" {{on "click" this.toggleEdit}} type="button">
-  {{if this.isEditing "Cancel" "Edit"}}
-</button>
-
-{{@model.name}}
-{{@model.breed}}
-{{@model.owner}}
-{{@model.size}}
-{{@model.description}}

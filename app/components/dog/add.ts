@@ -4,7 +4,7 @@ import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export interface DogFormSignature {
+export interface DogAddSignature {
   // The arguments accepted by the component
   Args: {
     name: string;
@@ -24,7 +24,7 @@ export interface DogFormSignature {
   Element: null;
 }
 
-export default class DogForm extends Component<DogFormSignature> {
+export default class DogAdd extends Component<DogAddSignature> {
   @service declare store: Store;
 
   @tracked name = '';
