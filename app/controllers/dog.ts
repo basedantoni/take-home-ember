@@ -1,21 +1,16 @@
 import type Store from '@ember-data/store';
+import type RouterService from '@ember/routing/router-service';
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
-export default class DogsController extends Controller {
+export default class DogController extends Controller {
   @service declare store: Store;
+  @service declare router: RouterService;
 
-  @tracked isAdding = false;
   @tracked isEditing = false;
   @tracked errorMessage = '';
-
-  @action
-  toggleAdd() {
-    this.isAdding = !this.isAdding;
-    this.errorMessage = '';
-  }
 
   @action
   toggleEdit() {
@@ -24,8 +19,21 @@ export default class DogsController extends Controller {
 
   @action
   async handleSave(dog: any) {
-    this.store.createRecord('dog', dog);
-    this.toggleAdd();
+    return;
+    // this.store.createRecord('dog', dog);
+  }
+
+  @action
+  async handleDelete(dog: any) {
+    console.log('dog', dog);
+    const dogRecord = this.store.peekRecord('dog', dog.id);
+    if (!dogRecord) {
+      this.setErrorMessage('Dog not found');
+      return;
+    }
+
+    dogRecord.deleteRecord();
+    this.router.transitionTo('dogs');
   }
 
   @action

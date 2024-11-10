@@ -1,17 +1,13 @@
 <ul>
   {{#each @dogs as |dog|}}
-    <LinkTo
-      @route="dog"
-      @model={{dog}}
-      class="d-flex justify-content-between my-2"
-    >
-      <div class="row align-items-center w-100 gap-4">
+    <div class="row align-items-center w-100 gap-4">
+      <LinkTo @route="dog" @model={{dog}} class="col">
         <div class="col">{{dog.name}}</div>
-        <div class="col">{{dog.breed}}</div>
-        <div class="col">{{dog.owner}}</div>
-        <div class="col">{{dog.size}}</div>
-        <div class="col">{{dog.description}}</div>
-      </div>
-    </LinkTo>
+      </LinkTo>
+      <div class="col">{{dog.breed}}</div>
+      <div class="col">{{dog.owner}}</div>
+      <div class="col">{{dog.size}}</div>
+      <div class="col">{{dog.description}}</div>
+    </div>
   {{/each}}
 </ul>

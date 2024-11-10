@@ -15,8 +15,12 @@
   {{/if}}
 
   {{#if this.isAdding}}
-    <Dog::Form @onSave={{this.handleSave}} @onCancel={{this.toggleAdd}} />
+    <Dog::Form
+      @onSave={{this.handleSave}}
+      @onCancel={{this.toggleAdd}}
+      @onError={{this.setErrorMessage}}
+    />
   {{else}}
-    <DogList @dogs={{@model}} />
+    <DogList @dogs={{@model}} @onDelete={{this.handleDelete}} />
   {{/if}}
 </div>

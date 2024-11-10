@@ -13,7 +13,8 @@ export interface DogFormSignature {
     size: string;
     description: string;
     onSave: (dog: any) => void;
-    setErrorMessage: (message: string) => void;
+    onCancel: () => void;
+    onError: (message: string) => void;
   };
   // Any blocks yielded by the component
   Blocks: {
@@ -43,7 +44,6 @@ export default class DogForm extends Component<DogFormSignature> {
       description: this.description,
     };
 
-    // Validate data (simple example)
     if (
       !dog.name ||
       !dog.breed ||
@@ -51,8 +51,7 @@ export default class DogForm extends Component<DogFormSignature> {
       !dog.size ||
       !dog.description
     ) {
-      // Handle validation errors (you can display messages)
-      this.args.setErrorMessage('Please fill in all fields correctly.');
+      this.args.onError('Please fill in all fields correctly.');
       return;
     }
 

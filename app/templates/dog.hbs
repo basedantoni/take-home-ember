@@ -2,6 +2,19 @@
 
 <h2>Dog Profile</h2>
 
+<button
+  type="button"
+  class="col btn btn-danger"
+  {{on "click" (fn this.handleDelete @model)}}
+>
+  Delete
+</button>
+
+{{this.isEditing}}
+<button class="btn btn-primary" {{on "click" this.toggleEdit}} type="button">
+  {{if this.isEditing "Cancel" "Edit"}}
+</button>
+
 {{@model.name}}
 {{@model.breed}}
 {{@model.owner}}
