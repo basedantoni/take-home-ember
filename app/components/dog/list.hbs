@@ -4,6 +4,32 @@
   {{on "input" (fn @onUpdateSearch)}}
 />
 
+<div>
+  <label>Breed:</label>
+  <select {{on "change" (fn @onUpdateSelectedBreed)}}>
+    <option value="">All Breeds</option>
+    {{#each @uniqueBreeds as |breed|}}
+      <option value={{breed}}>{{breed}}</option>
+    {{/each}}
+  </select>
+
+  <label>Owner:</label>
+  <select {{on "change" (fn @onUpdateSelectedOwner)}}>
+    <option value="">All Owners</option>
+    {{#each @uniqueOwners as |owner|}}
+      <option value={{owner}}>{{owner}}</option>
+    {{/each}}
+  </select>
+
+  <label>Size:</label>
+  <select {{on "change" (fn @onUpdateSelectedSize)}}>
+    <option value="">All Sizes</option>
+    {{#each @uniqueSizes as |size|}}
+      <option value={{size}}>{{size}}</option>
+    {{/each}}
+  </select>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -17,7 +43,9 @@
   <tbody>
     {{#each @dogs as |dog|}}
       <tr>
-        <td>{{dog.name}}</td>
+        <LinkTo @route="dog" @model={{dog}}>
+          <td>{{dog.name}}</td>
+        </LinkTo>
         <td>{{dog.breed}}</td>
         <td>{{dog.owner}}</td>
         <td>{{dog.size}}</td>

@@ -23,9 +23,15 @@
   {{else}}
     <Dog::List
       @dogs={{this.filteredAndSortedDogs}}
+      @uniqueBreeds={{this.uniqueBreeds}}
+      @uniqueOwners={{this.uniqueOwners}}
+      @uniqueSizes={{this.uniqueSizes}}
       @onUpdateSearch={{this.updateSearchTerm}}
       @onSetSort={{this.setSortKey}}
       @onDelete={{this.handleDelete}}
+      @onUpdateSelectedBreed={{this.updateSelectedBreed}}
+      @onUpdateSelectedOwner={{this.updateSelectedOwner}}
+      @onUpdateSelectedSize={{this.updateSelectedSize}}
     />
   {{/if}}
 </div>

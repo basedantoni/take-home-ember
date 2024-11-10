@@ -13,17 +13,44 @@ export default class DogsController extends Controller {
   @tracked isAdding = false;
   @tracked isEditing = false;
   @tracked errorMessage = '';
+
+  // Search
   @tracked searchTerm = '';
+
+  // Filter
+  @tracked selectedBreed: string | null = null;
+  @tracked selectedOwner: string | null = null;
+  @tracked selectedSize: string | null = null;
+
+  // Sort
   @tracked sortKey: keyof DogModel | null = null;
   @tracked sortOrder: 'asc' | 'desc' = 'asc';
 
-  get filteredDogs() {
-    if (!this.searchTerm.trim()) {
-      // If searchTerm is empty, return all dogs
-      return this.model;
-    }
+  get uniqueBreeds() {
+    return [...new Set(this.model.map((dog) => dog.breed))];
+  }
 
-    return this.model.filter((dog) => this.isMatch(dog));
+  get uniqueOwners() {
+    return [...new Set(this.model.map((dog) => dog.owner))];
+  }
+
+  get uniqueSizes() {
+    return [...new Set(this.model.map((dog) => dog.size))];
+  }
+
+  get filteredDogs() {
+    return this.model.filter((dog) => {
+      // console.log(dog.breed, dog.owner, dog.size);
+      // console.log(this.selectedBreed, this.selectedOwner, this.selectedSize);
+      const matchesSearchTerm = !this.searchTerm.trim() || this.isMatch(dog);
+      const matchesBreed =
+        !this.selectedBreed || dog.breed === this.selectedBreed;
+      const matchesOwner =
+        !this.selectedOwner || dog.owner === this.selectedOwner;
+      const matchesSize = !this.selectedSize || dog.size === this.selectedSize;
+
+      return matchesSearchTerm && matchesBreed && matchesOwner && matchesSize;
+    });
   }
 
   get filteredAndSortedDogs() {
@@ -89,6 +116,24 @@ export default class DogsController extends Controller {
   @action
   setErrorMessage(message: string) {
     this.errorMessage = message;
+  }
+
+  @action
+  updateSelectedBreed(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    this.selectedBreed = target.value || null;
+  }
+
+  @action
+  updateSelectedOwner(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    this.selectedOwner = target.value || null;
+  }
+
+  @action
+  updateSelectedSize(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    this.selectedSize = target.value || null;
   }
 
   // Helper function to check if a dog matches the search term
