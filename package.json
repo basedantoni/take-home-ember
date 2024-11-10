@@ -114,5 +114,9 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "@ember-data/adapter": "^5.3.9",
+    "uuid": "^11.0.2"
   }
 }

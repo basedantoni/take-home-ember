@@ -25,14 +25,13 @@ export default class DogController extends Controller {
 
   @action
   async handleDelete(dog: any) {
-    console.log('dog', dog);
-    const dogRecord = this.store.peekRecord('dog', dog.id);
+    const dogRecord = await this.store.findRecord('dog', dog.id);
     if (!dogRecord) {
       this.setErrorMessage('Dog not found');
       return;
     }
 
-    dogRecord.deleteRecord();
+    await dogRecord.destroyRecord();
     this.router.transitionTo('dogs');
   }
 
