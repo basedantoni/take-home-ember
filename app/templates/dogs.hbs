@@ -22,8 +22,9 @@
     />
   {{else}}
     <Dog::List
-      @dogs={{this.filteredDogs}}
+      @dogs={{this.filteredAndSortedDogs}}
       @onUpdateSearch={{this.updateSearchTerm}}
+      @onSetSort={{this.setSortKey}}
       @onDelete={{this.handleDelete}}
     />
   {{/if}}

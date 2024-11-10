@@ -14,9 +14,10 @@ export default class DogsController extends Controller {
   @tracked isEditing = false;
   @tracked errorMessage = '';
   @tracked searchTerm = '';
+  @tracked sortKey: keyof DogModel | null = null;
+  @tracked sortOrder: 'asc' | 'desc' = 'asc';
 
   get filteredDogs() {
-    console.log('filteredDogs', this.searchTerm);
     if (!this.searchTerm.trim()) {
       // If searchTerm is empty, return all dogs
       return this.model;
@@ -25,10 +26,47 @@ export default class DogsController extends Controller {
     return this.model.filter((dog) => this.isMatch(dog));
   }
 
+  get filteredAndSortedDogs() {
+    let filteredDogs = this.filteredDogs;
+
+    if (this.sortKey) {
+      filteredDogs = filteredDogs.slice().sort((a, b) => {
+        const aValue = a[this.sortKey ?? 'name'];
+        const bValue = b[this.sortKey ?? 'name'];
+
+        if (aValue === null || bValue === null) {
+          return 0;
+        }
+
+        if (aValue < bValue) {
+          return this.sortOrder === 'asc' ? -1 : 1;
+        }
+        if (aValue > bValue) {
+          return this.sortOrder === 'asc' ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+
+    return filteredDogs;
+  }
+
   @action
   updateSearchTerm(event: Event) {
     const target = event.target as HTMLInputElement;
     this.searchTerm = target.value;
+  }
+
+  @action
+  setSortKey(sortKey: keyof DogModel) {
+    if (this.sortKey === sortKey) {
+      // Toggle the sort order if the sort key is the same
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      // Set the new sort key and reset to ascending order
+      this.sortKey = sortKey;
+      this.sortOrder = 'asc';
+    }
   }
 
   @action

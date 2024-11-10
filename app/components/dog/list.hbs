@@ -4,8 +4,25 @@
   {{on "input" (fn @onUpdateSearch)}}
 />
 
-<ul>
-  {{#each @dogs as |dog|}}
-    <Dog::Item @dog={{dog}} />
-  {{/each}}
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th {{on "click" (fn @onSetSort "name")}}>Name</th>
+      <th {{on "click" (fn @onSetSort "breed")}}>Breed</th>
+      <th {{on "click" (fn @onSetSort "owner")}}>Owner</th>
+      <th {{on "click" (fn @onSetSort "size")}}>Size</th>
+      <th {{on "click" (fn @onSetSort "description")}}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each @dogs as |dog|}}
+      <tr>
+        <td>{{dog.name}}</td>
+        <td>{{dog.breed}}</td>
+        <td>{{dog.owner}}</td>
+        <td>{{dog.size}}</td>
+        <td>{{dog.description}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
