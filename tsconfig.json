@@ -9,6 +9,8 @@
       "voyant-take-home/tests/*": ["tests/*"],
       "voyant-take-home/*": ["app/*"],
       "*": ["types/*"]
-    }
-  }
+    },
+    "target": "ESNext"
+  },
+  "exclude": ["node_modules", "dist"]
 }

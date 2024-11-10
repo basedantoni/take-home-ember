@@ -1,0 +1,51 @@
+<form class="d-flex flex-column gap-2" {{on "submit" this.onSubmit}}>
+  <label for="name">Name</label>
+  <Input
+    {{on "input" this.updateName}}
+    id="name"
+    type="text"
+    @value={{this.name}}
+  />
+
+  <label for="breed">Breed</label>
+  <Input
+    {{on "input" this.updateBreed}}
+    id="breed"
+    type="text"
+    @value={{this.breed}}
+  />
+
+  <label for="owner">Owner</label>
+  <Input
+    {{on "input" this.updateOwner}}
+    id="owner"
+    type="text"
+    @value={{this.owner}}
+  />
+
+  <label for="size">size</label>
+  <select {{on "change" this.updateSize}} name="size" id="size">
+    <option value="">--Select a size--</option>
+    <option value="xs">XS</option>
+    <option value="sm">SM</option>
+    <option value="md">MD</option>
+    <option value="lg">LG</option>
+    <option value="xl">XL</option>
+    <option value="chonk">CHONK</option>
+  </select>
+
+  <label for="description">Description</label>
+  <Input
+    {{on "input" this.updateDescription}}
+    id="description"
+    type="text"
+    @value={{this.description}}
+  />
+
+  <button type="submit">Submit</button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    {{on "click" @onCancel}}
+  >Cancel</button>
+</form>

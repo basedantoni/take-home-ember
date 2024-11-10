@@ -1,6 +1,10 @@
-{{page-title "Voyant Doggos"}}
+<div class="d-flex h-100">
+  <aside class="d-flex flex-column align-items-center p-3 h-100" id="sidebar">
+    <LinkTo @route="index">Home</LinkTo>
+    <LinkTo @route="dogs">Dogs</LinkTo>
+  </aside>
 
-<h1>Voyant Doggos</h1>
-<div id="ember-bootstrap-wormhole"></div>
-
-{{outlet}}
+  <main class="mt-5 container h-100">
+    {{outlet}}
+  </main>
+</div>
