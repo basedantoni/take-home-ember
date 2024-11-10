@@ -21,6 +21,10 @@
       @onError={{this.setErrorMessage}}
     />
   {{else}}
-    <Dog::List @dogs={{@model}} @onDelete={{this.handleDelete}} />
+    <Dog::List
+      @dogs={{this.filteredDogs}}
+      @onUpdateSearch={{this.updateSearchTerm}}
+      @onDelete={{this.handleDelete}}
+    />
   {{/if}}
 </div>
