@@ -14,12 +14,12 @@ interface DogModel {
 export default class DogRoute extends Route<DogModel> {
   @service declare store: Store;
 
-  async model(params: { id: string }): Promise<DogModel> {
+  async model(params: { dog_id: string }): Promise<DogModel> {
     const { name, breed, owner, size, description } =
-      await this.store.findRecord('dog', params.id);
+      await this.store.findRecord('dog', params.dog_id);
 
     return {
-      id: params.id,
+      id: params.dog_id,
       name,
       breed,
       owner,

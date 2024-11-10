@@ -1,6 +1,6 @@
 {{page-title "Dog | Voyant Doggos"}}
 
-<h2>Dog Profile</h2>
+<h2>Dog Profile: {{@model.name}}</h2>
 
 <button class="btn btn-primary" {{on "click" this.toggleEdit}} type="button">
   {{if this.isEditing "Cancel" "Edit"}}
