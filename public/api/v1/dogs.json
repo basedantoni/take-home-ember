@@ -3,7 +3,7 @@
     {
       "id": "1",
       "name": "Saul",
-      "breed": "Lab",
+      "breed": "Labrador",
       "owner": "Dave",
       "size": "LG",
       "description": "An energetic lab that loves to play"
@@ -11,7 +11,7 @@
     {
       "id": "2",
       "name": "Goldie",
-      "breed": "Lab",
+      "breed": "Labrador",
       "owner": "Dave",
       "size": "LG",
       "description": "Office mommy dog"

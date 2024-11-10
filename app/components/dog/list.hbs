@@ -1,56 +1,64 @@
-<input
-  type="text"
-  placeholder="Search dogs..."
-  {{on "input" (fn @onUpdateSearch)}}
-/>
+<div class="d-flex flex-column gap-3">
+  <Input
+    type="text"
+    class="form-control"
+    placeholder="Search dogs..."
+    {{on "input" @onUpdateSearch}}
+  />
 
-<div>
-  <label>Breed:</label>
-  <select {{on "change" (fn @onUpdateSelectedBreed)}}>
-    <option value="">All Breeds</option>
-    {{#each @uniqueBreeds as |breed|}}
-      <option value={{breed}}>{{breed}}</option>
-    {{/each}}
-  </select>
+  <div class="d-flex gap-3">
+    <label class="form-label">Breed:</label>
+    <select class="form-select" {{on "change" @onUpdateSelectedBreed}}>
+      <option value="">All Breeds</option>
+      {{#each @uniqueBreeds as |breed|}}
+        <option value={{breed}}>{{breed}}</option>
+      {{/each}}
+    </select>
 
-  <label>Owner:</label>
-  <select {{on "change" (fn @onUpdateSelectedOwner)}}>
-    <option value="">All Owners</option>
-    {{#each @uniqueOwners as |owner|}}
-      <option value={{owner}}>{{owner}}</option>
-    {{/each}}
-  </select>
+    <label class="form-label">Owner:</label>
+    <select class="form-select" {{on "change" @onUpdateSelectedOwner}}>
+      <option value="">All Owners</option>
+      {{#each @uniqueOwners as |owner|}}
+        <option value={{owner}}>{{owner}}</option>
+      {{/each}}
+    </select>
 
-  <label>Size:</label>
-  <select {{on "change" (fn @onUpdateSelectedSize)}}>
-    <option value="">All Sizes</option>
-    {{#each @uniqueSizes as |size|}}
-      <option value={{size}}>{{size}}</option>
-    {{/each}}
-  </select>
-</div>
+    <label class="form-label">Size:</label>
+    <select class="form-select" {{on "change" @onUpdateSelectedSize}}>
+      <option value="">All Sizes</option>
+      {{#each @uniqueSizes as |size|}}
+        <option value={{size}}>{{size}}</option>
+      {{/each}}
+    </select>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th {{on "click" (fn @onSetSort "name")}}>Name</th>
-      <th {{on "click" (fn @onSetSort "breed")}}>Breed</th>
-      <th {{on "click" (fn @onSetSort "owner")}}>Owner</th>
-      <th {{on "click" (fn @onSetSort "size")}}>Size</th>
-      <th {{on "click" (fn @onSetSort "description")}}>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each @dogs as |dog|}}
+  <table class="table">
+    <thead>
       <tr>
-        <LinkTo @route="dog" @model={{dog}}>
-          <td>{{dog.name}}</td>
-        </LinkTo>
-        <td>{{dog.breed}}</td>
-        <td>{{dog.owner}}</td>
-        <td>{{dog.size}}</td>
-        <td>{{dog.description}}</td>
+        <th {{on "click" (fn @onSetSort "name")}} scope="col">Name</th>
+        <th {{on "click" (fn @onSetSort "breed")}} scope="col">Breed</th>
+        <th {{on "click" (fn @onSetSort "owner")}} scope="col">Owner</th>
+        <th {{on "click" (fn @onSetSort "size")}} scope="col">Size</th>
+        <th
+          {{on "click" (fn @onSetSort "description")}}
+          scope="col"
+        >Description</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#each @dogs as |dog|}}
+        <tr>
+          <td>
+            <LinkTo @route="dog" @model={{dog}}>
+              {{dog.name}}
+            </LinkTo>
+          </td>
+          <td>{{dog.breed}}</td>
+          <td>{{dog.owner}}</td>
+          <td>{{dog.size}}</td>
+          <td>{{dog.description}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

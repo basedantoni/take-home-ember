@@ -138,7 +138,7 @@ export default class DogsController extends Controller {
 
   // Helper function to check if a dog matches the search term
   private isMatch(dog: any) {
-    let term = this.searchTerm.toLowerCase();
+    const term = this.searchTerm.toLowerCase();
     return (
       dog.name.toLowerCase().includes(term) ||
       dog.breed.toLowerCase().includes(term) ||

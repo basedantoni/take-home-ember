@@ -1,18 +1,41 @@
 {{page-title "Dog | Voyant Doggos"}}
 
-<h2>Dog Profile: {{@model.name}}</h2>
+<div class="d-flex justify-content-between">
+  <div class="d-flex flex-column gap-3">
+    <div class="grid row gap-3">
+      <h2>Dog Profile: {{@model.name}}</h2>
+      <p class="col">Breed: {{@model.breed}}</p>
+      <p class="col">Owner: {{@model.owner}}</p>
+      <p class="col">Size: {{@model.size}}</p>
+      <p class="col">Description: {{@model.description}}</p>
+    </div>
 
-<button class="btn btn-primary" {{on "click" this.toggleEdit}} type="button">
-  {{if this.isEditing "Cancel" "Edit"}}
-</button>
+    <img
+      class="img-thumbnail"
+      src={{@model.dogImageUrl}}
+      alt="Dog Image"
+      style="width: 200px;"
+    />
+  </div>
 
-<button
-  type="button"
-  class="col btn btn-danger"
-  {{on "click" (fn this.handleDelete @model)}}
->
-  Delete
-</button>
+  <div class="d-flex gap-3 align-items-start">
+    <button
+      class="btn btn-primary"
+      {{on "click" this.toggleEdit}}
+      type="button"
+    >
+      {{if this.isEditing "Cancel" "Edit"}}
+    </button>
+
+    <button
+      type="button"
+      class="col btn btn-danger"
+      {{on "click" (fn this.handleDelete @model)}}
+    >
+      Delete
+    </button>
+  </div>
+</div>
 
 {{#if this.isEditing}}
   <Dog::Edit
@@ -21,6 +44,4 @@
     @onCancel={{this.toggleEdit}}
     @onError={{this.handleError}}
   />
-{{else}}
-  <Dog::Item @dog={{@model}} />
 {{/if}}

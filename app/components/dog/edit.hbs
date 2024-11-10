@@ -1,5 +1,5 @@
 <form class="d-flex flex-column gap-2" {{on "submit" this.onSubmit}}>
-  <label for="name">Name</label>
+  <label class="form-label" for="name">Name</label>
   <Input
     {{on "input" this.updateName}}
     id="name"
@@ -7,24 +7,31 @@
     @value={{this.name}}
   />
 
-  <label for="breed">Breed</label>
+  <label class="form-label" for="breed">Breed</label>
   <Input
+    class="form-control"
     {{on "input" this.updateBreed}}
     id="breed"
     type="text"
     @value={{this.breed}}
   />
 
-  <label for="owner">Owner</label>
+  <label class="form-label" for="owner">Owner</label>
   <Input
+    class="form-control"
     {{on "input" this.updateOwner}}
     id="owner"
     type="text"
     @value={{this.owner}}
   />
 
-  <label for="size">size</label>
-  <select {{on "change" this.updateSize}} name="size" id="size">
+  <label class="form-label" for="size">size</label>
+  <select
+    class="form-select"
+    {{on "change" this.updateSize}}
+    name="size"
+    id="size"
+  >
     <option value="">--Select a size--</option>
     <option value="xs">XS</option>
     <option value="sm">SM</option>
@@ -34,15 +41,16 @@
     <option value="chonk">CHONK</option>
   </select>
 
-  <label for="description">Description</label>
+  <label class="form-label" for="description">Description</label>
   <Input
+    class="form-control"
     {{on "input" this.updateDescription}}
     id="description"
     type="text"
     @value={{this.description}}
   />
 
-  <button type="submit">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
   <button
     type="button"
     class="btn btn-secondary"
