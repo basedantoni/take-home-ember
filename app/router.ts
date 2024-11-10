@@ -7,6 +7,10 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
+  // Dog routes
   this.route('dogs');
   this.route('dog', { path: '/dog/:dog_id' });
+
+  // Not found route
+  this.route('not-found', { path: '/*path' });
 });
