@@ -3,22 +3,22 @@ import { setupRenderingTest } from 'voyant-take-home/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | dog-list', function (hooks) {
+module('Integration | Component | dog-item', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Dog::List />`);
+    await render(hbs`<DogItem />`);
 
     assert.dom().hasText('');
 
     // Template block usage:
     await render(hbs`
-      <Dog::List>
+      <DogItem>
         template block text
-      </Dog::List>
+      </DogItem>
     `);
 
     assert.dom().hasText('template block text');
